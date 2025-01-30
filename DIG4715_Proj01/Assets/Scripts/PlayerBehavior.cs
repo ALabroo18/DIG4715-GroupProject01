@@ -140,12 +140,12 @@ public class PlayerBehavior : MonoBehaviour
     {
         // Run function that controls the player's movement in fixed update for accurate physics interactions.
         PlayerMovement();
-        if (isWalking)
-        {
-            Vector3 vector = Vector3.left * horizontalMovement + Vector3.down * verticalMovement;
-            sword.rotation = Quaternion.LookRotation(Vector3.forward, vector);
+           /* if (isWalking)
+            {
+                Vector3 vector = Vector3.left * horizontalMovement + Vector3.down * verticalMovement;
+                sword.rotation = Quaternion.LookRotation(Vector3.forward, vector);
 
-        }
+            }*/
     }
 
     // Function to check for player input.
@@ -157,10 +157,10 @@ public class PlayerBehavior : MonoBehaviour
         float MoveX = Input.GetAxisRaw("Horizontal");
         float MoveY = Input.GetAxisRaw("Vertical");
 
-        //if (Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.Z) || Input.GetKey(KeyCode.E))
-        //{
-        //    SpawnPlayerWeapon();
-        //}
+        if (Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.Z) || Input.GetKey(KeyCode.E))
+        {
+            SpawnPlayerWeapon();
+        }
     }
 
     void PlayerMovement()
@@ -169,7 +169,7 @@ public class PlayerBehavior : MonoBehaviour
         rb2d.velocity = new Vector2(horizontalMovement * playerSpeed, verticalMovement * playerSpeed);
 
         // Run function that changes the player's sprite based on movement.
-        UpdateSpriteAnimation();
+        /*UpdateSpriteAnimation();*/
 
         // Update the last facing direction whenever movement occurs.
         if (Mathf.Abs(horizontalMovement) > 0.05f || Mathf.Abs(verticalMovement) > 0.05f)
@@ -177,7 +177,7 @@ public class PlayerBehavior : MonoBehaviour
             lastFacingDirection = new Vector2(horizontalMovement, verticalMovement).normalized;
         }
     }
-    
+
     // Temporary coroutine that changes the player's color when they collide with an enemy.
     //IEnumerator ColorChange()
     //{
@@ -292,14 +292,14 @@ public class PlayerBehavior : MonoBehaviour
     //    }
     //}
 
-    //void SpawnPlayerWeapon()
-    //{
-    //    GameObject playerAttack;
-    //    // Check to see if enough time has passed since the last weapon spawn to spawn another.
-    //    if (Time.time - lastAttackTime < playerAttackCooldown)
-    //    {
-    //        return; // Not enough time has passed, so exit the function.
-    //    }
+    void SpawnPlayerWeapon()
+    {
+       GameObject playerAttack;
+       // Check to see if enough time has passed since the last weapon spawn to spawn another.
+       if (Time.time - lastAttackTime < playerAttackCooldown)
+       {
+           return; // Not enough time has passed, so exit the function.
+       }
     //    else if (Time.time - lastAttackTime < bombCoolDown && bombs == 0)
     //    {
     //        return; // Not enough time has passed, so exit the function.
@@ -309,30 +309,31 @@ public class PlayerBehavior : MonoBehaviour
     //    {
     //        bombs += 3;
     //    }
-    //    if (Input.GetKey(KeyCode.Space))
-    //    {
-    //        // Spawn the attack at the player's position and give it a variable name.
-    //        playerAttack = Instantiate(playerWeapon, playerTransform.position, Quaternion.identity);
-    //        // Get the rigidbody of the player's attack.
-    //        Rigidbody2D playerAttackRb = playerAttack.GetComponent<Rigidbody2D>();
-    //        // As long as the playerAttack's rigidbody exits (does not equal null), run code below.
-    //        if (playerAttackRb != null)
-    //        {
-    //            // Set the direction the attack moves in the direction the player is facing.
-    //            playerAttackRb.velocity = lastFacingDirection * playerAttackSpeed;
+       if (Input.GetKey(KeyCode.Space))
+       {
+            Debug.Log("hi");
+           // Spawn the attack at the player's position and give it a variable name.
+           playerAttack = Instantiate(playerWeapon, playerTransform.position, Quaternion.identity);
+           // Get the rigidbody of the player's attack.
+           Rigidbody2D playerAttackRb = playerAttack.GetComponent<Rigidbody2D>();
+           // As long as the playerAttack's rigidbody exits (does not equal null), run code below.
+           if (playerAttackRb != null)
+           {
+               // Set the direction the attack moves in the direction the player is facing.
+               playerAttackRb.velocity = lastFacingDirection * playerAttackSpeed;
 
-    //            // Calculate the angle based on the movement direction of the player.
-    //            // Once calculated, set the player's attack to that rotation.
-    //            float angle = Mathf.Atan2(lastFacingDirection.x, -lastFacingDirection.y) * Mathf.Rad2Deg;
-    //            playerAttack.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-    //        }
-    //        else
-    //        {
-    //            Debug.LogWarning("Rigidbody2D not found on player attack."); // Debug here in case issue occurs.
-    //        }
+               // Calculate the angle based on the movement direction of the player.
+               // Once calculated, set the player's attack to that rotation.
+               float angle = Mathf.Atan2(lastFacingDirection.x, -lastFacingDirection.y) * Mathf.Rad2Deg;
+               playerAttack.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+           }
+           else
+           {
+               Debug.LogWarning("Rigidbody2D not found on player attack."); // Debug here in case issue occurs.
+           }
 
 
-    //    }
+    }
     //    else if (Input.GetKey(KeyCode.Z) && bombs >= 1)
     //    {
     //        // Spawn the attack at the player's position and give it a variable name.
@@ -356,8 +357,6 @@ public class PlayerBehavior : MonoBehaviour
     //        }
     //        bombs -= 1;
     //        Debug.Log($"Bomb: {bombs}");
-
-    //    }
     //    else if (Input.GetKey(KeyCode.E))
     //    {
     //        // Spawn the attack at the player's position and give it a variable name.
@@ -365,8 +364,8 @@ public class PlayerBehavior : MonoBehaviour
     //        playerAttack.transform.SetParent(this.gameObject.transform);
     //    }
 
-    //    lastAttackTime = Time.time; // Begin attack cooldown.       
-    //}
+       /*lastAttackTime = Time.time;*/ // Begin attack cooldown.       
+    }
 
     //// Function is called when the weapon is destroyed. This then resets the cooldown timer, allowing the player to attack again.
     //public void WeaponDestroyed()
@@ -426,7 +425,7 @@ public class PlayerBehavior : MonoBehaviour
     //    {
     //        // Adjust the lives by the change amount.
     //        Lives += livesChange;
-            
+
     //        // Run a check to make sure the max or minimum of lives and score are not hit. *Score does not have a max.
     //        MinAndMaxChecks();
 
@@ -498,5 +497,5 @@ public class PlayerBehavior : MonoBehaviour
     //        transform.position = new Vector3(0, 0, transform.position.z);
     //    }
     //}
-    
+
 }
