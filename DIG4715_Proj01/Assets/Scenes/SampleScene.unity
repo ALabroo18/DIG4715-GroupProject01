@@ -186,7 +186,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerSpeed: 7
   className: 
-  playerWeapon: {fileID: 0}
+  playerWeapon: {fileID: 9015079470910823901, guid: 7bfe244d1dc0d784cbef3c419488fb68, type: 3}
   playerBomb: {fileID: 0}
   sword: {fileID: 0}
 --- !u!212 &435813632
