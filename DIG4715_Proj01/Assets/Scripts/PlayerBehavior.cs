@@ -7,6 +7,7 @@ using System;
 using Random = UnityEngine.Random;
 using Unity.Burst.CompilerServices;
 
+
 public class PlayerBehavior : MonoBehaviour
 {
     // Create singleton reference.
@@ -38,6 +39,10 @@ public class PlayerBehavior : MonoBehaviour
     public GameObject playerBomb;
     private float bombCoolDown = 5.0f;
     public GameObject sword;
+
+    //Variables for Animations
+    private Animator animator;
+    private Vector2 moveInput;
 
     // Create a list of the various classes that the player can be.
     //[HideInInspector] public List<string> playerClassName = new List<string>()
@@ -105,8 +110,9 @@ public class PlayerBehavior : MonoBehaviour
 
         // Set references to player components.
         rb2d = GetComponent<Rigidbody2D>(); // Set rigidbody reference.
-        //playerAnimator = GetComponent<Animator>(); // Set animator reference.
+        animator = GetComponent<Animator>(); // Set animator reference.
         playerTransform = transform; // Set transform reference.
+
 
         // Assign movement axis references.
         horizontalMovement = Input.GetAxis("Horizontal");
@@ -234,6 +240,7 @@ public class PlayerBehavior : MonoBehaviour
     //    playerAnimator.SetBool("moveUp", movingUp);
     //    playerAnimator.SetBool("moveDown", movingDown);
     //}
+    
 
     //// Function that sets the player's class.
     //// Will probably change as I think player will have the ability to choose their class.
