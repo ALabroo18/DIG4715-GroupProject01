@@ -640,6 +640,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1312471798516401027, guid: bfe97e91224ff034d8090c0a732904f8, type: 3}
+      propertyPath: livesText
+      value: 
+      objectReference: {fileID: 1724313154}
+    - target: {fileID: 1312471798516401027, guid: bfe97e91224ff034d8090c0a732904f8, type: 3}
+      propertyPath: scoreText
+      value: 
+      objectReference: {fileID: 1874152484}
     - target: {fileID: 1375609925015345993, guid: bfe97e91224ff034d8090c0a732904f8, type: 3}
       propertyPath: m_Name
       value: Knightro
