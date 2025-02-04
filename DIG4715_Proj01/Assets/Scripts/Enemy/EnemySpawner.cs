@@ -12,7 +12,7 @@ public class EnemySpawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log("sup");
+        //Debug.Log("sup");
         StartCoroutine(SpawnEnemy());
     }
 
@@ -35,7 +35,13 @@ public class EnemySpawner : MonoBehaviour
     }
 
     void OnTriggerEnter2D(Collider2D hit){
-        Destroy(gameObject);
+
+        if (hit.CompareTag("Spear"))
+        {
+            Debug.Log("Spear noticed");
+            Destroy(gameObject);
+
+        }
 
     }
 }

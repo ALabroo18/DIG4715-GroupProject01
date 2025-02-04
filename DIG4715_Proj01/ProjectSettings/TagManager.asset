@@ -3,7 +3,15 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Spawner
+  - meal
+  - chest
+  - AOE
+  - key
+  - potion
+  - Enemy
+  - Spear
   layers:
   - Default
   - TransparentFX
