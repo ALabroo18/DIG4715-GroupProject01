@@ -27,6 +27,10 @@ public class PlayerBehavior : MonoBehaviour
     private Color classColor;
     [HideInInspector] public string className;
     private bool hasFired = false;
+
+    public bool hasPotion = false;
+
+    public bool hasKey = true;
     private float colorChangeTime = 0.25f; // Time between changes of color when player takes damage.
 
     // Variables used for weapon behavior.
@@ -38,7 +42,7 @@ public class PlayerBehavior : MonoBehaviour
     private float playerAttackSpeed = 10.5f;
     public GameObject playerBomb;
     private float bombCoolDown = 5.0f;
-    public GameObject sword;
+    // public GameObject sword;
 
     //Variables for Animations
     private Animator animator;
@@ -53,60 +57,60 @@ public class PlayerBehavior : MonoBehaviour
     //};
 
     //// Variables for lives and score.
-    //[HideInInspector] public int maxLives = 50;
-    //private int _lives = 0;
+    [HideInInspector] public int maxLives = 2000;
+    private int _lives = 0;
     //private int bombs = 3;
 
     //// When hit by an enemy or enemy attack, this is the amount of lives the player loses.
-    //private int livesLostOnHit = -1;
+    private int livesLostOnHit = -10;
 
     // Lives variable that is accessed in other classes, so _lives is not accessed by other classes.
-    //public int Lives
-    //{
-    //    get
-    //    {
-    //        return _lives;
-    //    }
-    //    set
-    //    {
-    //        _lives = value;
-    //    }
-    //}
+    public int Lives
+    {
+       get
+       {
+           return _lives;
+       }
+       set
+       {
+           _lives = value;
+       }
+    }
 
-    //private int _score = 0;
+    private int _score = 0;
 
     // Score variables that is accessed in other classes, so _score is not accessed by other classes.
-    //public int Score
-    //{
-    //    get
-    //    {
-    //        return _score;
-    //    }
-    //    set
-    //    {
-    //        _score = value;
-    //    }
-    //}
+    public int Score
+    {
+       get
+       {
+           return _score;
+       }
+       set
+       {
+           _score = value;
+       }
+    }
 
-    //[Header("UI Elements")]
+    [Header("UI Elements")]
     //// UI variables.
-    //[SerializeField] private TextMeshProUGUI livesText;
-    //[SerializeField] private TextMeshProUGUI scoreText;
+    [SerializeField] private TextMeshProUGUI livesText;
+    [SerializeField] private TextMeshProUGUI scoreText;
     //[SerializeField] private TextMeshProUGUI bombsText;
     //[SerializeField] private GameObject gameOverDisplay;
 
     //// Delegate and event when game is over.
-    //public delegate void GameOverEvent();
-    //public event GameOverEvent gameIsOver;
+    public delegate void GameOverEvent();
+    public event GameOverEvent gameIsOver;
 
     //// When the player gets hit, they have a small invincibility time, and this bool tracks when they are or are not invincible.
-    //private bool invincible = false;
+    private bool invincible = false;
     //private float invincibleTime = 1.2f; // Time player is invincible
 
     void Start()
     {
         // Set singleton reference.
-        //instance = this;
+        instance = this;
 
         // Set references to player components.
         rb2d = GetComponent<Rigidbody2D>(); // Set rigidbody reference.
@@ -128,10 +132,10 @@ public class PlayerBehavior : MonoBehaviour
         }
 
         // Set player lives to the max at the start. Do this before setting UI so it is up to date.
-        //Lives = maxLives;
+        Lives = maxLives;
 
         // Run at start to make sure UI is displayed when player begins the game.
-        //SetUI();
+        SetUI();
     }
 
     void Update()
@@ -141,18 +145,15 @@ public class PlayerBehavior : MonoBehaviour
 
         // Check to make sure the player's save data does not spawn them outside the map.
         //BoundaryChecks();
+
+
+
     }
 
     void FixedUpdate()
     {
         // Run function that controls the player's movement in fixed update for accurate physics interactions.
         PlayerMovement();
-           /* if (isWalking)
-            {
-                Vector3 vector = Vector3.left * horizontalMovement + Vector3.down * verticalMovement;
-                sword.rotation = Quaternion.LookRotation(Vector3.forward, vector);
-
-            }*/
     }
 
     // Function to check for player input.
@@ -164,7 +165,7 @@ public class PlayerBehavior : MonoBehaviour
         float MoveX = Input.GetAxisRaw("Horizontal");
         float MoveY = Input.GetAxisRaw("Vertical");
 
-        if (Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.Z) || Input.GetKey(KeyCode.E))
+        if (Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.Z) || Input.GetKey(KeyCode.E)) //Space for lance, j for AOE bomb
         {
             SpawnPlayerWeapon();
         }
@@ -195,16 +196,16 @@ public class PlayerBehavior : MonoBehaviour
     //}
 
     //// Function that handles the damage the player takes. 
-    //public void TakeDamage()
-    //{
-    //    // If the player is not invincible, take away a life, flash red to indicate damage taken, and set them to invincible for a brief time.
-    //    if (!invincible)
-    //    {
-    //        ChangeLives(livesLostOnHit);
-    //        StartCoroutine(ColorChange()); // Run change color coroutine
-    //        StartCoroutine(SetInvincible());
-    //    }
-    //}
+    public void TakeDamage()
+    {
+       // If the player is not invincible, take away a life, flash red to indicate damage taken, and set them to invincible for a brief time.
+       if (!invincible)
+       {
+           ChangeLives(livesLostOnHit);
+        //    StartCoroutine(ColorChange()); // Run change color coroutine
+        //    StartCoroutine(SetInvincible());
+       }
+    }
 
     //// Updates the sprite animation based on the direction the player is moving in.
     //void UpdateSpriteAnimation()
@@ -335,7 +336,6 @@ public class PlayerBehavior : MonoBehaviour
             {
                 hasFired = false;
             }
-            Debug.Log("hi");
             
 
             if(hasFired == false)
@@ -436,91 +436,93 @@ public class PlayerBehavior : MonoBehaviour
     //        maxLives++;
     //        _lives++;
     //    }
-    //}
-
+    ////
+    ///
+    /// USE SCORE LATER
     //// Function to change score.
-    //public void ChangeScore(int scoreChange)
-    //{
-    //    // Adjust score by the change amount.
-    //    Score += scoreChange;
+    public void ChangeScore(int scoreChange)
+    {
+       // Adjust score by the change amount.
+       Score += scoreChange;
 
-    //    // Run a check to make sure the max or minimum of lives and score are not hit. *Score does not have a max.
+       // Run a check to make sure the max or minimum of lives and score are not hit. *Score does not have a max.
     //    MinAndMaxChecks();
 
-    //    // Set the UI so it changes when score changes.
-    //    SetUI();
-    //}
-
+       // Set the UI so it changes when score changes.
+       SetUI();
+    }
+    //USE CHANGE LIVES LATER
     //// Function to change lives.
-    //public void ChangeLives(int livesChange)
-    //{
-    //    // Try to change lives.
-    //    try
-    //    {
-    //        // Adjust the lives by the change amount.
-    //        Lives += livesChange;
+    public void ChangeLives(int livesChange)
+    {
+       // Try to change lives.
+       try
+       {
+           // Adjust the lives by the change amount.
+           Lives += livesChange;
 
-    //        // Run a check to make sure the max or minimum of lives and score are not hit. *Score does not have a max.
-    //        MinAndMaxChecks();
+           // Run a check to make sure the max or minimum of lives and score are not hit. *Score does not have a max.
+        //    MinAndMaxChecks();
 
-    //        // Set the UI so it changes when the lives change.
-    //        SetUI();
+           // Set the UI so it changes when the lives change.
+           SetUI();
 
-    //        // After changing, if the lives are at or below 0, throw an exception made in the OutOfLivesException class.
-    //        if (_lives <= 0)
-    //        {
-    //            throw new OutOfLivesException();
-    //        }
-    //    }
-    //    // If an OutOfLiveException is caught, begin the zero lives remaining coroutine that ends the game and debug that the player is out of lives.
-    //    catch (OutOfLivesException)
-    //    {
-    //        StartCoroutine(ZeroLivesRemaining());
-    //        //Debug.Log("Can't continue because there are no more lives remaining!" + exception);
-    //    }
-    //}
+           // After changing, if the lives are at or below 0, throw an exception made in the OutOfLivesException class.
+           if (_lives <= 0)
+           {
+               throw new OutOfLivesException();
+           }
+       }
+       // If an OutOfLiveException is caught, begin the zero lives remaining coroutine that ends the game and debug that the player is out of lives.
+       catch (OutOfLivesException)
+       {
+           StartCoroutine(ZeroLivesRemaining());
+           //Debug.Log("Can't continue because there are no more lives remaining!" + exception);
+       }
+    }
 
+    //USE SETUI LATER
     //// Function to set UI.
-    //public void SetUI()
-    //{
-    //    // Set the livesText to the text in "" + the current lives variable value.
-    //    livesText.text = "Lives " + _lives;
+    public void SetUI()
+    {
+       // Set the livesText to the text in "" + the current lives variable value.
+       livesText.text = "Lives " + _lives;
 
-    //    // Set the scoreText to the text in "" + the current score variable value.
-    //    scoreText.text = _score + " Score";
+       // Set the scoreText to the text in "" + the current score variable value.
+       scoreText.text = _score + " Score";
 
     //    bombsText.text = "Bombs " + bombs;
-    //}
+    }
 
+///USE ZEROLIVESREMAINING LATER
     //// Coroutine that starts when the player has no more lives.
-    //IEnumerator ZeroLivesRemaining()
-    //{
-    //    // Stop time, turn on the game over display to play its animation
-    //    // (animation update mode is set to unscaled time in the inspector to allow it to play while time is stopped),
-    //    // wait until a little bit after the animation is done (use WaitForSecondsRealtime so it uses unscaled time,
-    //    // allowing the wait time to work even if time scale is at 0), then run the event.
-    //    Time.timeScale = 0f;
+    IEnumerator ZeroLivesRemaining()
+    {
+       // Stop time, turn on the game over display to play its animation
+       // (animation update mode is set to unscaled time in the inspector to allow it to play while time is stopped),
+       // wait until a little bit after the animation is done (use WaitForSecondsRealtime so it uses unscaled time,
+       // allowing the wait time to work even if time scale is at 0), then run the event.
+       Time.timeScale = 0f;
     //    gameOverDisplay.SetActive(true);
-    //    yield return new WaitForSecondsRealtime(2.5f);
-    //    gameIsOver();
-    //}
+       yield return new WaitForSecondsRealtime(2.5f);
+       gameIsOver();
+    }
 
     //// Class that creates an exception that is used when there are no more lives remaining.
-    //public class OutOfLivesException : Exception
-    //{
-    //    public OutOfLivesException() : base("Player ran out of lives!")
-    //    {
-
-    //    }
-    //}
+    public class OutOfLivesException : Exception
+    {
+       public OutOfLivesException() : base("Player ran out of lives!")
+       {
+       }
+    }
 
     //// When player gets hit, set them to invincible for a brief time frame before allowing them to take damaage again.
-    //private IEnumerator SetInvincible()
-    //{
+    // private IEnumerator SetInvincible()
+    // {
     //    invincible = true;
     //    yield return new WaitForSeconds(invincibleTime);
     //    invincible = false;
-    //}
+    // }
 
     //// Check the player's x and y position to ensure that they are not outside of the map's x or y (width or height).
     //void BoundaryChecks()
