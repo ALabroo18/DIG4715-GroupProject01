@@ -498,11 +498,11 @@ IEnumerator RemoveHealth()
        //Slowly enhance your character every 10 hits
        // Ensure the _score > 0 check remains or else this if statment will cause false positives, resulting in the player gaining
        // lives even if their score is at 0. Checking that the score is above 0 ensures that does not happen.
-       if(_score > 0 && _score % 100 == 0)
-       {
-           maxLives++;
-           _lives++;
-       }
+       //if(_score > 0 && _score % 100 == 0)
+       //{
+       //    maxLives++;
+       //    _lives++;
+       //}
     }
     //
     ///
@@ -544,10 +544,11 @@ IEnumerator RemoveHealth()
        // If an OutOfLiveException is caught, begin the zero lives remaining coroutine that ends the game and debug that the player is out of lives.
        catch (OutOfLivesException)
        {
-           SceneManager.LoadScene("Project_1_GameOver_Screen");
-           //StartCoroutine(ZeroLivesRemaining());
-           //Debug.Log("Can't continue because there are no more lives remaining!" + exception);
-       }
+
+            StartCoroutine(ZeroLivesRemaining());
+            SceneManager.LoadScene("Project_1_GameOver_Screen");
+            //Debug.Log("Can't continue because there are no more lives remaining!" + exception);
+        }
     }
     //USE SETUI LATER
     //// Function to set UI.

@@ -63,8 +63,4 @@ public class itemScript : MonoBehaviour
 
        
     }
-
-    private void OnTriggerEnter2D(Collision2D coll){
-        
-    }
 }
