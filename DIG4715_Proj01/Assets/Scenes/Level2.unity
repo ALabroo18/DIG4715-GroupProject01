@@ -127,6 +127,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3289834516047839374, guid: ffadfc8723f5f094b8766c8350253673, type: 3}
   m_PrefabInstance: {fileID: 2059881272}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &27919744 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5682663680778367726, guid: fe1db1b4a8b292340942d2dbb8aebdca, type: 3}
+  m_PrefabInstance: {fileID: 1724561622}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &81813856
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3410,7 +3421,7 @@ Transform:
   m_GameObject: {fileID: 927011461}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.9789314, y: 6.0225897, z: -10}
+  m_LocalPosition: {x: 9.16207, y: 6.0443397, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3491,6 +3502,17 @@ Transform:
   - {fileID: 1925726690}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &986953732 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5269824411646130409, guid: fe1db1b4a8b292340942d2dbb8aebdca, type: 3}
+  m_PrefabInstance: {fileID: 1724561622}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1010238991 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3355985677483887445, guid: 4967d6fccf6ec094c9f44d7e4b244e4d, type: 3}
@@ -14316,6 +14338,14 @@ PrefabInstance:
       propertyPath: m_Volume
       value: 0.565
       objectReference: {fileID: 0}
+    - target: {fileID: 5835608831239916420, guid: bfe97e91224ff034d8090c0a732904f8, type: 3}
+      propertyPath: livesText
+      value: 
+      objectReference: {fileID: 27919744}
+    - target: {fileID: 5835608831239916420, guid: bfe97e91224ff034d8090c0a732904f8, type: 3}
+      propertyPath: scoreText
+      value: 
+      objectReference: {fileID: 986953732}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

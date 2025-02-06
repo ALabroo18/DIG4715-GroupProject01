@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 4516056672019716564}
   m_Layer: 0
   m_Name: Knightro
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -124,9 +124,9 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1375609925015345993}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: b65cbd0b62b17f0419d4bb8946a2a5c6, type: 2}
+  m_Controller: {fileID: 9100000, guid: 5995c3ed8e1e18649b72e00274394d0a, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -191,6 +191,7 @@ MonoBehaviour:
   hasKey: 1
   playerWeapon: {fileID: 9015079470910823901, guid: 7bfe244d1dc0d784cbef3c419488fb68, type: 3}
   playerBomb: {fileID: 0}
+  animator: {fileID: 2876401983261727547}
   maxLives: 2000
   livesText: {fileID: 0}
   scoreText: {fileID: 0}

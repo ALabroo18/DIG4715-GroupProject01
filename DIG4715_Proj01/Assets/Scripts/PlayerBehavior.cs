@@ -46,9 +46,10 @@ public class PlayerBehavior : MonoBehaviour
     private float bombCoolDown = 5.0f;
     // public GameObject sword;
 
-    //Variables for Animations
-    Animator animator;
-    private Vector2 moveInput;
+    // Animator stuff
+
+    public Animator animator;
+    private bool isMoving;
 
     // Create a list of the various classes that the player can be.
     //[HideInInspector] public List<string> playerClassName = new List<string>()
@@ -116,7 +117,7 @@ public class PlayerBehavior : MonoBehaviour
 
         // Set references to player components.
         rb2d = GetComponent<Rigidbody2D>(); // Set rigidbody reference.
-        animator = GetComponent<Animator>(); // Set animator reference.
+        // animator = GetComponent<Animator>(); // Set animator reference.
         playerTransform = transform; // Set transform reference.
         // Assign movement axis references.
         horizontalMovement = Input.GetAxis("Horizontal");
@@ -169,6 +170,7 @@ IEnumerator RemoveHealth()
     {
         // Run PlayerInput function that checks for any input made by the user.
         PlayerInput();
+        Animate();
 
         // Check to make sure the player's save data does not spawn them outside the map.
         //BoundaryChecks();
@@ -214,6 +216,24 @@ IEnumerator RemoveHealth()
         {
             lastFacingDirection = new Vector2(horizontalMovement, verticalMovement).normalized;
         }
+    }
+
+    private void Animate(){
+        if(lastFacingDirection.magnitude > 0.1f || lastFacingDirection.magnitude < -0.1f){
+
+            isMoving = true;
+        }
+        else{
+            isMoving = false;
+        }
+
+        if(isMoving){
+
+            Debug.Log("isMoving");
+            animator.SetFloat("X", horizontalMovement);
+            animator.SetFloat("Y", verticalMovement);
+        }
+        animator.SetBool("Moving", isMoving);
     }
 
     // Temporary coroutine that changes the player's color when they collide with an enemy.
