@@ -12,6 +12,7 @@ TagManager:
   - potion
   - Enemy
   - Spear
+  - gate
   layers:
   - Default
   - TransparentFX
@@ -21,7 +22,7 @@ TagManager:
   - UI
   - Walls
   - Floor
-  - 
+  - Confiner
   - 
   - 
   - 

@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class ExitScript : MonoBehaviour
 {
+    public AudioClip audioClip;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,6 +20,10 @@ public class ExitScript : MonoBehaviour
     }
 
     private void OnTriggerEnter2D(Collider2D other){
+
+        PlayerBehavior pB = other.GetComponent<PlayerBehavior>();
+
+        pB.PlaySound(audioClip);
         SceneManager.LoadScene("Level2");
     }
 }

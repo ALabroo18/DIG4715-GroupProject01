@@ -57,7 +57,7 @@ public class PlayerBehavior : MonoBehaviour
     //};
 
     //// Variables for lives and score.
-    [HideInInspector] public int maxLives = 2000;
+    [HideInInspector] public int maxLives = 2000;   
     private int _lives = 0;
     //private int bombs = 3;
 
@@ -136,13 +136,24 @@ public class PlayerBehavior : MonoBehaviour
 
         // Run at start to make sure UI is displayed when player begins the game.
         SetUI();
+
+
+
+        StartCoroutine(RemoveHealth());
     }
+    public int score = 0;
+
+
 
     void Update()
     {
         // Run PlayerInput function that checks for any input made by the user.
         PlayerInput();
 
+        // if(maxLives > 0){
+        //     maxLives -= Time.deltaTime;
+        // }
+        
         // Check to make sure the player's save data does not spawn them outside the map.
         //BoundaryChecks();
 
@@ -185,6 +196,34 @@ public class PlayerBehavior : MonoBehaviour
             lastFacingDirection = new Vector2(horizontalMovement, verticalMovement).normalized;
         }
     }
+    IEnumerator RemoveHealth()
+    {
+        
+        //yield on a new YieldInstruction that waits for 5 seconds.
+        while(maxLives > 0){
+            ChangeLives(-1);
+            yield return new WaitForSeconds(1);
+        }
+        
+
+        //After we have waited 5 seconds print the time again.
+        
+    }
+
+    // void Start()
+// {
+//     StartCoroutine( TimerRoutine() );
+// }
+
+// IEnumerator TimerRoutine ()
+// {
+//     WaitForSeconds delay = new WaitForSeconds(1);
+//     while (true)
+//     {
+//         score += 1;
+//         yield return delay;
+//     }
+// }
 
     // Temporary coroutine that changes the player's color when they collide with an enemy.
     //IEnumerator ColorChange()
@@ -408,36 +447,36 @@ public class PlayerBehavior : MonoBehaviour
     //}
 
     //// Function to make sure lives and score do not go outside their boundaries.
-    //void MinAndMaxChecks()
-    //{
-    //    // If lives somehow go over the max, keep them at max.
-    //    if (_lives > maxLives)
-    //    {
-    //        _lives = maxLives;
-    //    }
+    void MinAndMaxChecks()
+    {
+       // If lives somehow go over the max, keep them at max.
+       if (_lives > maxLives)
+       {
+           _lives = maxLives;
+       }
 
-    //    // If lives goes under 0, set it back to 0.
-    //    if (_lives <= 0)
-    //    {
-    //        _lives = 0;
-    //    }
+       // If lives goes under 0, set it back to 0.
+       if (_lives <= 0)
+       {
+           _lives = 0;
+       }
 
-    //    // If score somehow goes below 0, set it back to 0.
-    //    if (_score < 0)
-    //    {
-    //        _score = 0;
-    //    }
+       // If score somehow goes below 0, set it back to 0.
+       if (_score < 0)
+       {
+           _score = 0;
+       }
 
-    //    //Slowly enhance your character every 10 hits
-    //    // Ensure the _score > 0 check remains or else this if statment will cause false positives, resulting in the player gaining
-    //    // lives even if their score is at 0. Checking that the score is above 0 ensures that does not happen.
-    //    if(_score > 0 && _score % 100 == 0)
-    //    {
-    //        maxLives++;
-    //        _lives++;
-    //    }
-    ////
-    ///
+       //Slowly enhance your character every 10 hits
+       // Ensure the _score > 0 check remains or else this if statment will cause false positives, resulting in the player gaining
+       // lives even if their score is at 0. Checking that the score is above 0 ensures that does not happen.
+       if(_score > 0 && _score % 100 == 0)
+       {
+           maxLives++;
+           _lives++;
+       }
+    }
+    //
     /// USE SCORE LATER
     //// Function to change score.
     public void ChangeScore(int scoreChange)
@@ -446,7 +485,7 @@ public class PlayerBehavior : MonoBehaviour
        Score += scoreChange;
 
        // Run a check to make sure the max or minimum of lives and score are not hit. *Score does not have a max.
-    //    MinAndMaxChecks();
+       MinAndMaxChecks();
 
        // Set the UI so it changes when score changes.
        SetUI();
@@ -462,7 +501,7 @@ public class PlayerBehavior : MonoBehaviour
            Lives += livesChange;
 
            // Run a check to make sure the max or minimum of lives and score are not hit. *Score does not have a max.
-        //    MinAndMaxChecks();
+           MinAndMaxChecks();
 
            // Set the UI so it changes when the lives change.
            SetUI();
