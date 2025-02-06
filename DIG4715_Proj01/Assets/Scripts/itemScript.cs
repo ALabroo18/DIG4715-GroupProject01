@@ -55,15 +55,16 @@ public class itemScript : MonoBehaviour
                 pB.PlaySound(audioClip);
 
             }
-        }
+            else if (this.gameObject.CompareTag("gate") && other.GetComponent<PlayerBehavior>().hasKey == true)
+            {
+                Destroy(this.gameObject);
+            }
+            }
 
        
     }
 
-    private void OnCollisionEnter2D(Collision2D coll){
-        if(this.gameObject.CompareTag("gate")){
-            
-            Destroy(this.gameObject);
-        }
+    private void OnTriggerEnter2D(Collision2D coll){
+        
     }
 }

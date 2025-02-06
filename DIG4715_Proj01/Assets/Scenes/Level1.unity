@@ -966,6 +966,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1339282025}
     m_Modifications:
+    - target: {fileID: 599286020591727848, guid: 70b1c78b46c7f364a9beecabd4b48bd8, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1087228916726066630, guid: 70b1c78b46c7f364a9beecabd4b48bd8, type: 3}
       propertyPath: m_Name
       value: gate 1
@@ -13316,7 +13320,7 @@ Transform:
   m_GameObject: {fileID: 1628713679}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -13.22113, y: 9.01726, z: -10}
+  m_LocalPosition: {x: -11.490782, y: 9.021259, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

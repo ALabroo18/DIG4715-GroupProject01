@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class ExitScript : MonoBehaviour
 {
@@ -24,6 +25,18 @@ public class ExitScript : MonoBehaviour
         PlayerBehavior pB = other.GetComponent<PlayerBehavior>();
 
         pB.PlaySound(audioClip);
-        SceneManager.LoadScene("Level2");
+
+        Scene currentScene = SceneManager.GetActiveScene();
+        if (currentScene.name == "Level2")
+        {
+            PlayerPrefs.SetInt("Scoretext", pB.Score);
+            SceneManager.LoadScene("Project1_WinScreen");
+        }
+        else
+        {
+            PlayerPrefs.SetInt("Scoretext", pB.Score);
+            SceneManager.LoadScene("Level2");
+        }
+        
     }
 }

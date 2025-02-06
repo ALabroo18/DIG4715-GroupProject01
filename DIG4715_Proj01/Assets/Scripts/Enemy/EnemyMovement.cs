@@ -56,4 +56,16 @@ public class EnemyMovement : EnemyScript
 
         // Check to make sure that the sprite reference exists before setting the float to ensure there is no error.
     }
+
+
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (this.CompareTag("Player"))
+        {
+            // Stop the motion until player leaves
+            this.transform.position = this.transform.position;
+
+        }
+    }
 }

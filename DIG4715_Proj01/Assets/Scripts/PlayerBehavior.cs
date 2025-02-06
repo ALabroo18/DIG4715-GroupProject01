@@ -6,6 +6,7 @@ using UnityEngine;
 using System;
 using Random = UnityEngine.Random;
 using Unity.Burst.CompilerServices;
+using UnityEngine.SceneManagement;
 
 
 public class PlayerBehavior : MonoBehaviour
@@ -119,6 +120,13 @@ public class PlayerBehavior : MonoBehaviour
         rb2d = GetComponent<Rigidbody2D>(); // Set rigidbody reference.
         // animator = GetComponent<Animator>(); // Set animator reference.
         playerTransform = transform; // Set transform reference.
+        Scene currentScene = SceneManager.GetActiveScene();
+        if(currentScene.name == "Level2")
+        {
+            ChangeScore(PlayerPrefs.GetInt("Scoretext"));
+        }
+
+
         // Assign movement axis references.
         horizontalMovement = Input.GetAxis("Horizontal");
         verticalMovement = Input.GetAxis("Vertical");
@@ -536,7 +544,8 @@ IEnumerator RemoveHealth()
        // If an OutOfLiveException is caught, begin the zero lives remaining coroutine that ends the game and debug that the player is out of lives.
        catch (OutOfLivesException)
        {
-           StartCoroutine(ZeroLivesRemaining());
+           SceneManager.LoadScene("Project_1_GameOver_Screen");
+           //StartCoroutine(ZeroLivesRemaining());
            //Debug.Log("Can't continue because there are no more lives remaining!" + exception);
        }
     }

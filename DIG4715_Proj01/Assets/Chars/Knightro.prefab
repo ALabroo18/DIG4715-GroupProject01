@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1316439767465815597}
   - component: {fileID: 5835608831239916420}
   - component: {fileID: 4516056672019716564}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Knightro
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -115,7 +115,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!95 &2876401983261727547
 Animator:
   serializedVersion: 5
@@ -188,7 +188,7 @@ MonoBehaviour:
   playerSpeed: 7
   className: 
   potionCount: 1
-  hasKey: 1
+  hasKey: 0
   playerWeapon: {fileID: 9015079470910823901, guid: 7bfe244d1dc0d784cbef3c419488fb68, type: 3}
   playerBomb: {fileID: 0}
   animator: {fileID: 2876401983261727547}
