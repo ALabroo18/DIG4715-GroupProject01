@@ -9,15 +9,27 @@ EditorBuildSettings:
     path: Assets/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
+    path: Assets/Scenes/title.unity
+    guid: 8ef4d4f1ad80976478aa6bbf5a51277e
+  - enabled: 1
     path: Assets/Scenes/Level1.unity
     guid: 25e497b3ad07c6444a872c1910fb95c3
   - enabled: 1
     path: Assets/Scenes/Level2.unity
     guid: 1a79afa46dd375043aa6fc7ce05fe94c
   - enabled: 1
-    path: Assets/Scenes/title.unity
-    guid: 8ef4d4f1ad80976478aa6bbf5a51277e
-  - enabled: 1
+    path: Assets/Scenes/End Credits 1.unity
+    guid: ed3e4fd87054b06469d7ee2f09e8ef3b
+  - enabled: 0
     path: Assets/Scenes/End Credits.unity
     guid: 0b2f61140d6e9c04aaac28aa8ede72c9
+  - enabled: 1
+    path: Assets/Scenes/Project_1_GameOver_Screen.unity
+    guid: ac1d74ce0a14bdb449f0fc1de62d361f
+  - enabled: 1
+    path: Assets/Scenes/Project1_WinScreen.unity
+    guid: 793608e01ecd2d64599c526209251eee
+  - enabled: 1
+    path: Assets/Scenes/control page.unity
+    guid: c28697791cf162a40b982476463ca4e5
   m_configObjects: {}

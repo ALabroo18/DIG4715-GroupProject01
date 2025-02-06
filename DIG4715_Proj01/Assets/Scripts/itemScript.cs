@@ -57,6 +57,7 @@ public class itemScript : MonoBehaviour
             }
             else if (this.gameObject.CompareTag("gate") && other.GetComponent<PlayerBehavior>().hasKey == true)
             {
+                other.GetComponent<PlayerBehavior>().hasKey = false;
                 Destroy(this.gameObject);
             }
             }

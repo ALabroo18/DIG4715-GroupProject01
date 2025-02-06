@@ -12,18 +12,28 @@ public class MainMenu : MonoBehaviour
         QualitySettings.vSyncCount = 1;
     }
 
+    private void Update()
+    {
+       
+    }
+
     // Load the game scene with a snow biome.
-    public void PlayGame()
+    public void PlayControls()
     {
         // Set chosen level, number of o
-
-        LoadScene("Level1");
+        LoadScene("control page");
+        
     }
 
     // Load the game scene with a grassland biome.
     public void LoadCredits()
     {
-        LoadScene("End Credits");
+        LoadScene("End Credits 1");
+    }
+
+    public void LoadControls()
+    {
+        LoadScene("control page");
     }
     // This function will make it so if you press the quit button, the application will close.
     public void QuitButton()
@@ -40,4 +50,5 @@ public class MainMenu : MonoBehaviour
     {
         SceneManager.LoadScene(scene);
     }
+
 }

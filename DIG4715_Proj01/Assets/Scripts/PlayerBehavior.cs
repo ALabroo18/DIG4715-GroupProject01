@@ -66,7 +66,7 @@ public class PlayerBehavior : MonoBehaviour
     //private int bombs = 3;
 
     //// When hit by an enemy or enemy attack, this is the amount of lives the player loses.
-    private int livesLostOnHit = -10;
+    private int livesLostOnHit = -30;
 
     // Lives variable that is accessed in other classes, so _lives is not accessed by other classes.
     public int Lives
@@ -123,6 +123,7 @@ public class PlayerBehavior : MonoBehaviour
         Scene currentScene = SceneManager.GetActiveScene();
         if(currentScene.name == "Level2")
         {
+            ChangeLives(PlayerPrefs.GetInt("LivesText"));
             ChangeScore(PlayerPrefs.GetInt("Scoretext"));
         }
 
@@ -536,7 +537,7 @@ IEnumerator RemoveHealth()
            SetUI();
 
            // After changing, if the lives are at or below 0, throw an exception made in the OutOfLivesException class.
-           if (_lives <= 0)
+           if (_lives <= 10)
            {
                throw new OutOfLivesException();
            }
@@ -546,7 +547,6 @@ IEnumerator RemoveHealth()
        {
 
             StartCoroutine(ZeroLivesRemaining());
-            SceneManager.LoadScene("Project_1_GameOver_Screen");
             //Debug.Log("Can't continue because there are no more lives remaining!" + exception);
         }
     }
@@ -592,7 +592,9 @@ IEnumerator RemoveHealth()
        Time.timeScale = 0f;
     //    gameOverDisplay.SetActive(true);
        yield return new WaitForSecondsRealtime(2.5f);
-       gameIsOver();
+
+        SceneManager.LoadScene("Project_1_GameOver_Screen");
+        //gameIsOver();
     }
 
     //// Class that creates an exception that is used when there are no more lives remaining.

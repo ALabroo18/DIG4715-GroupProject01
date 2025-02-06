@@ -35,6 +35,7 @@ public class ExitScript : MonoBehaviour
         else
         {
             PlayerPrefs.SetInt("Scoretext", pB.Score);
+            PlayerPrefs.SetInt("LivesText", pB.Lives);
             SceneManager.LoadScene("Level2");
         }
         

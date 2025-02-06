@@ -77,6 +77,8 @@ public class EnemyScript : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             collision.gameObject.GetComponent<PlayerBehavior>().TakeDamage();
+
+            Destroy(this.gameObject);
         }
     }
 }
