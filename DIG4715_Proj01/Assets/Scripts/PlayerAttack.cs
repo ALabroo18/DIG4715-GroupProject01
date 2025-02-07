@@ -25,7 +25,7 @@ public class PlayerAttack : MonoBehaviour
 
         // Destroy the player attack after a set amount of time so it does not exist for too long.
 
-        Destroy(this.gameObject, 0.42f);
+        Destroy(this.gameObject, 0.62f);
 
         //THE REST OF THE CODE IS USELESS FOR THIS PROJECT
         // if (this.CompareTag("Sword"))
@@ -70,8 +70,7 @@ public class PlayerAttack : MonoBehaviour
             pB.ChangeScore(enemyHitScore);
 
             Debug.Log("Enemy hit");
-            Destroy(this.gameObject);
-        }
+         }
         else if(hit.CompareTag("Spawner")){
             pB.ChangeScore(200);
             Destroy(this.gameObject);

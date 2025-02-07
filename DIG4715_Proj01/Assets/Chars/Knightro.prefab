@@ -186,8 +186,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioSource: {fileID: 4516056672019716564}
   playerSpeed: 7
+  MagicSound: {fileID: 8300000, guid: 7520318bd491a7947ade99fc6571a76b, type: 3}
   className: 
-  potionCount: 1
+  potionCount: 0
   hasKey: 0
   playerWeapon: {fileID: 9015079470910823901, guid: 7bfe244d1dc0d784cbef3c419488fb68, type: 3}
   playerBomb: {fileID: 0}

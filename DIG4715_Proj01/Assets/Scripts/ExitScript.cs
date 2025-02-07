@@ -29,13 +29,13 @@ public class ExitScript : MonoBehaviour
         Scene currentScene = SceneManager.GetActiveScene();
         if (currentScene.name == "Level2")
         {
-            PlayerPrefs.SetInt("Scoretext", pB.Score);
+            PlayerPrefs.SetInt("Scores", pB.Score);
             SceneManager.LoadScene("Project1_WinScreen");
         }
         else
         {
-            PlayerPrefs.SetInt("Scoretext", pB.Score);
-            PlayerPrefs.SetInt("LivesText", pB.Lives);
+            PlayerPrefs.SetInt("Scores", pB.Score);
+            //PlayerPrefs.SetInt("LivesText", pB.Lives);
             SceneManager.LoadScene("Level2");
         }
         

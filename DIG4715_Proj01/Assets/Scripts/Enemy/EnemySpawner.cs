@@ -19,7 +19,7 @@ public class EnemySpawner : MonoBehaviour
     // Will spawn 10 enemies
     private IEnumerator SpawnEnemy()
     {
-        for(int i = 0; i < 10; i++)
+        for(int i = 0; i < 100000; i++)
         {
             WaitForSeconds wait = new WaitForSeconds(enemySpawnTimer);
 

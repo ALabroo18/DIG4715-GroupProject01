@@ -18,10 +18,10 @@ public class PlayerBehavior : MonoBehaviour
 
     // Variables related to player movement.
     private Rigidbody2D rb2d;
-    [HideInInspector] public float playerSpeed = 7.0f;
+    [HideInInspector] public float playerSpeed = .0f;
     private float horizontalMovement; // Used for both movement and sprite change.
     private float verticalMovement; // Used for both movement and sprite change.
-
+    public AudioClip MagicSound;
     // Variables related to player sprite change.
     private float inputAmount = 0.02f;
     //  Animator playerAnimator;
@@ -123,8 +123,8 @@ public class PlayerBehavior : MonoBehaviour
         Scene currentScene = SceneManager.GetActiveScene();
         if(currentScene.name == "Level2")
         {
-            ChangeLives(PlayerPrefs.GetInt("LivesText"));
-            ChangeScore(PlayerPrefs.GetInt("Scoretext"));
+           /* ChangeLives(PlayerPrefs.GetInt("Lives"));*/
+            ChangeScore(PlayerPrefs.GetInt("Scores"));
         }
 
 
@@ -309,65 +309,6 @@ IEnumerator RemoveHealth()
     //    playerAnimator.SetBool("moveUp", movingUp);
     //    playerAnimator.SetBool("moveDown", movingDown);
     // }
-    
-
-    //// Function that sets the player's class.
-    //// Will probably change as I think player will have the ability to choose their class.
-    //public void PlayerClass()
-    //{
-    //    // Try to load the class name saved in the player save data.
-    //    try
-    //    {
-    //        PlayerData data = SaveSystem.LoadPlayer();
-    //        className = data.playerClass;
-    //    }
-    //    // If it doesn't exist, an exception will occur, so give the player a random class.
-    //    catch (Exception)
-    //    {
-    //        //Debug.Log("Exception: " + e);
-
-    //        // Create a random number that uses the length of the list as the max value.
-    //        float randomNum = Random.Range(0, playerClassName.Count);
-
-    //        // Set the player's className to an int version of the random number variable. 
-    //        // Use (int) just in case number haapens to be float.
-    //        className = playerClassName[(int)randomNum];
-
-    //        // Display the player's class in the console window.
-    //        //Debug.Log($"Your class is: {className}");
-    //    }
-    //    // Whether the className was loaded from save data or randomly chosen, set the variables based on the className.
-    //    finally
-    //    {
-    //        // Use a switch statement to change the player's color and speed based on their class.
-    //        switch (className)
-    //        {
-    //            case "archer":
-    //                // Player is archer, so use base color and make them quick.
-    //                classColor = Color.white;
-    //                playerSpeed = 7.0f;
-    //                break;
-    //            case "wizard":
-    //                // Player is wizard, so make them cyan since it stands out and slow them down.
-    //                classColor = Color.cyan;
-    //                playerSpeed = 5.5f;
-    //                break;
-    //            case "blueberry":
-    //                // Player is blueberry so make them blue and zoomin.
-    //                Color blueberryColour = new Color(0.31f, 0.53f, 0.97f);
-    //                classColor = Color.blue;
-    //                playerSpeed = 8.5f;
-    //                break;
-    //            default:
-    //                // If none of the classes above, use base color and base speed.
-    //                classColor = Color.white;
-    //                break;
-    //        }
-
-    //        // Once classColor is set, apply it.
-    //        this.GetComponent<Renderer>().material.color = classColor;
-    //    }
-    //}
 
     void SpawnPlayerWeapon()
     {
@@ -410,6 +351,8 @@ IEnumerator RemoveHealth()
             {
                 // Spawn the attack at the player's position and give it a variable name.
                 playerAttack = Instantiate(playerWeapon, playerTransform.position, Quaternion.identity);
+
+                playerAttack.transform.rotation = Quaternion.LookRotation(Vector3.forward, playerTransform.position);
                 // Get the rigidbody of the player's attack.
                 Rigidbody2D playerAttackRb = playerAttack.GetComponent<Rigidbody2D>();
                 // As long as the playerAttack's rigidbody exits (does not equal null), run code below.
@@ -571,6 +514,7 @@ IEnumerator RemoveHealth()
             foreach(GameObject Enemy in enemies){
                 GameObject.Destroy(Enemy);
             }
+            PlaySound(MagicSound);
             potionCount -= 1;
             
         }
